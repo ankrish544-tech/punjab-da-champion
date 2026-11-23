@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Punjab Da Champion</title>
+<style>
+:root{--navy:#071b55;--blue:#0754c8;--gold:#ffc629;--ink:#10204a}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Noto Sans Gurmukhi",Arial,sans-serif;background:#f4f7ff;color:var(--ink)}
+header{background:#071b55;color:#fff;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-weight:900;font-size:20px}.tag{font-size:12px;color:#dbe7ff}
+nav a{color:#fff;text-decoration:none;margin-left:14px;font-size:14px}
+.hero{background:radial-gradient(circle at 80% 30%,#1975ef,#073b9d 48%,#06194e);color:white;padding:48px 6% 42px;display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:center}
+.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.15;margin:0 0 12px}.hero p{font-size:17px;max-width:580px;color:#e6efff}
+.badge{display:inline-block;background:var(--gold);color:#332500;border-radius:30px;padding:7px 14px;font-weight:800;font-size:13px}
+.trophy{font-size:110px;text-align:center;filter:drop-shadow(0 10px 10px #00143d)}
+.btn{border:0;background:var(--gold);color:#2b2200;padding:12px 19px;border-radius:10px;font-weight:800;cursor:pointer}
+main{max-width:1100px;margin:auto;padding:28px 16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:-10px}
+.stat,.card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 6px 22px #12295c12}
+.stat{text-align:center}.stat strong{display:block;color:#0649b5;font-size:23px}
+h2{color:#102e78;margin:26px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.round{border:1px solid #e4eaff}.round h3{margin:0 0 6px}.round p{margin:0 0 13px;color:#5e6b89;font-size:14px}
+.round button{width:100%;background:#0a4db3;color:#fff;border:0;border-radius:9px;padding:10px;font-weight:700;cursor:pointer}
+.panel{display:none;margin-top:22px}.question{font-size:20px;font-weight:800;margin:8px 0 18px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answers button{padding:13px;text-align:left;background:#f0f5ff;border:1px solid #d7e3ff;border-radius:10px;cursor:pointer;color:#172957}
+.answers button:hover{border-color:#0754c8}.feedback{font-weight:800;margin-top:14px;min-height:24px}
+footer{text-align:center;padding:25px;color:#65718e;font-size:13px}
+@media(max-width:700px){.hero{grid-template-columns:1fr;text-align:center;padding:38px 20px}.trophy{font-size:75px}.stats{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}nav{display:none}}
+@media(max-width:420px){.grid{grid-template-columns:1fr}.answers{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">🏆 Punjab Da Champion</div><div class="tag">ਗਿਆਨ • ਮੁਕਾਬਲਾ • ਸਿੱਖੋ</div></div><nav><a href="#rounds">Rounds</a><a href="#about">About</a></nav></header>
+<section class="hero">
+ <div><span class="badge">WELCOME TO QUIZ CHALLENGE</span><h1>ਹੁਣ ਬਣੋ<br>Punjab ਦੇ Champion!</h1><p>ਆਪਣੇ ਗਿਆਨ ਦੀ ਪਰਖ ਕਰੋ, ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਦਿਓ ਅਤੇ ਆਪਣਾ ਸਕੋਰ ਬਣਾਓ।</p><button class="btn" onclick="document.querySelector('#rounds').scrollIntoView({behavior:'smooth'})">ਕੁਇਜ਼ ਸ਼ੁਰੂ ਕਰੋ</button></div>
+ <div class="trophy" aria-label="Trophy">🏆</div>
+</section>
+<main>
+ <section class="stats">
+  <div class="stat">🎯<strong>12</strong>Quiz Rounds</div>
+  <div class="stat">❓<strong>Demo</strong>Practice Questions</div>
+  <div class="stat">⭐<strong id="score">0</strong>Your Score</div>
+ </section>
+ <h2 id="rounds">ਆਪਣਾ Round ਚੁਣੋ</h2>
+ <div class="grid" id="roundGrid"></div>
+ <section class="card panel" id="quizPanel">
+  <div class="badge" id="roundLabel">ROUND 1</div>
+  <div class="question" id="questionText"></div>
+  <div class="answers" id="answerList"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="btn" id="nextBtn" style="display:none;margin-top:12px" onclick="closeQuestion()">ਅਗਲਾ Round</button>
+ </section>
+ <section id="about" class="card" style="margin-top:26px">
+  <h2 style="margin-top:0">Punjab Da Champion ਬਾਰੇ</h2>
+  <p>ਇਹ ਇੱਕ ਸੁਤੰਤਰ quiz website ਦਾ demo design ਹੈ। ਇਹ ਕਿਸੇ ਸਰਕਾਰੀ ਯੋਜਨਾ ਜਾਂ ਅਸਲੀ Punjab Da Crorepati ਪੋਰਟਲ ਨਾਲ ਸੰਬੰਧਿਤ ਨਹੀਂ ਹੈ। ਇਸ demo ਵਿੱਚ ਅਸਲੀ login, OTP, server leaderboard ਜਾਂ ਇਨਾਮਾਂ ਦੀ payment ਸ਼ਾਮਲ ਨਹੀਂ ਹੈ।</p>
+ </section>
+</main>
+<footer>© 2026 Punjab Da Champion · Demo Website</footer>
+<script>
+const qs=[
+["ਪੰਜਾਬ ਦੀ ਰਾਜਧਾਨੀ ਕਿਹੜੀ ਹੈ?",["ਚੰਡੀਗੜ੍ਹ","ਅੰਮ੍ਰਿਤਸਰ","ਲੁਧਿਆਣਾ","ਪਟਿਆਲਾ"],0],
+["ਭਾਰਤ ਦਾ ਰਾਸ਼ਟਰੀ ਪੰਛੀ ਕਿਹੜਾ ਹੈ?",["ਤੋਤਾ","ਮੋਰ","ਕਬੂਤਰ","ਬਾਜ਼"],1],
+["ਸ੍ਰੀ ਹਰਿਮੰਦਰ ਸਾਹਿਬ ਕਿੱਥੇ ਸਥਿਤ ਹੈ?",["ਜਲੰਧਰ","ਪਟਿਆਲਾ","ਅੰਮ੍ਰਿਤਸਰ","ਬਠਿੰਡਾ"],2],
+["ਭਾਰਤ ਦਾ ਸੰਵਿਧਾਨ ਕਦੋਂ ਲਾਗੂ ਹੋਇਆ?",["15 ਅਗਸਤ 1947","26 ਜਨਵਰੀ 1950","2 ਅਕਤੂਬਰ 1950","26 ਨਵੰਬਰ 1949"],1],
+["ਪੰਜਾਬ ਦਾ ਪ੍ਰਸਿੱਧ ਲੋਕ ਨਾਚ ਕਿਹੜਾ ਹੈ?",["ਭੰਗੜਾ","ਕਥਕ","ਗਰਬਾ","ਭਰਤਨਾਟਯਮ"],0],
+["ਸੂਰਜ ਕਿਸ ਦਿਸ਼ਾ ਤੋਂ ਚੜ੍ਹਦਾ ਹੈ?",["ਪੱਛਮ","ਉੱਤਰ","ਦੱਖਣ","ਪੂਰਬ"],3],
+["ਪਾਣੀ ਦਾ ਰਸਾਇਣਕ ਫਾਰਮੂਲਾ ਕੀ ਹੈ?",["CO₂","H₂O","O₂","NaCl"],1],
+["ਭਾਰਤ ਦਾ ਰਾਸ਼ਟਰੀ ਜਾਨਵਰ ਕਿਹੜਾ ਹੈ?",["ਸ਼ੇਰ","ਹਾਥੀ","ਬਾਘ","ਘੋੜਾ"],2],
+["ਇੱਕ ਸਾਲ ਵਿੱਚ ਕਿੰਨੇ ਮਹੀਨੇ ਹੁੰਦੇ ਹਨ?",["10","11","12","13"],2],
+["ਪੰਜਾਬ ਵਿੱਚ ਕਿਹੜੀ ਫਸਲ ਮੁੱਖ ਤੌਰ 'ਤੇ ਉਗਾਈ ਜਾਂਦੀ ਹੈ?",["ਚਾਹ","ਕਣਕ","ਕੌਫੀ","ਰਬੜ"],1],
+["ਕੰਪਿਊਟਰ ਦਾ ਦਿਮਾਗ ਕਿਸਨੂੰ ਕਿਹਾ ਜਾਂਦਾ ਹੈ?",["CPU","Mouse","Monitor","Keyboard"],0],
+["ਭਾਰਤ ਦਾ ਰਾਸ਼ਟਰੀ ਫੁੱਲ ਕਿਹੜਾ ਹੈ?",["ਗੁਲਾਬ","ਕਮਲ","ਸੂਰਜਮੁਖੀ","ਚਮੇਲੀ"],1]
+];
+let score=0,answered=false;
+const grid=document.getElementById('roundGrid');
+for(let i=0;i<12;i++){const d=document.createElement('div');d.className='card round';d.innerHTML=`<h3>🏅 Round ${i+1}</h3><p>1 Practice Question</p><button onclick="openQuestion(${i})">Start Round</button>`;grid.appendChild(d)}
+function openQuestion(i){answered=false;document.getElementById('quizPanel').style.display='block';document.getElementById('roundLabel').textContent='ROUND '+(i+1);document.getElementById('questionText').textContent=qs[i][0];document.getElementById('feedback').textContent='';document.getElementById('nextBtn').style.display='none';const a=document.getElementById('answerList');a.innerHTML='';qs[i][1].forEach((v,j)=>{let b=document.createElement('button');b.textContent=String.fromCharCode(65+j)+'. '+v;b.onclick=()=>choose(j,i);a.appendChild(b)});document.getElementById('quizPanel').scrollIntoView({behavior:'smooth'})}
+function choose(j,i){if(answered)return;answered=true;const ok=j===qs[i][2];if(ok){score+=10;document.getElementById('score').textContent=score;document.getElementById('feedback').textContent='ਬਿਲਕੁਲ ਸਹੀ! +10 ਅੰਕ 🎉'}else{document.getElementById('feedback').textContent='ਇਹ ਜਵਾਬ ਸਹੀ ਨਹੀਂ। ਸਹੀ ਜਵਾਬ: '+qs[i][1][qs[i][2]]}document.querySelectorAll('#answerList button').forEach(b=>b.disabled=true);document.getElementById('nextBtn').style.display='inline-block'}
+function closeQuestion(){document.getElementById('quizPanel').style.display='none';document.getElementById('rounds').scrollIntoView({behavior:'smooth'})}
+</script>
+</body></html>
